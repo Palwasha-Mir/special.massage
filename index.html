@@ -1,1 +1,854 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SK GYM WEAR | Haute Fitness & Athletic Couture</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                        mono: ['Space Mono', 'monospace'],
+                    },
+                    colors: {
+                        // Palette 1: Home
+                        obsidian: '#0B0B0B',
+                        roseGold: '#B76E79',
+                        
+                        // Palette 2: Gym Wear
+                        charcoal: '#1A1A1A',
+                        electricRose: '#FF2A6D',
+                        metallicSilver: '#C0C0C0',
+                        
+                        // Palette 3: Yoga Wear
+                        ivoryCream: '#F9F6F0',
+                        terracotta: '#D48367',
+                        sageGreen: '#8A9A86',
+                        
+                        // Palette 4: Gymnast Wear
+                        burgundy: '#58111A',
+                        plum: '#3B1424',
+                        shimmerGold: '#D4AF37',
+                        
+                        // Palette 5: Inquiry
+                        espresso: '#221C1A',
+                        champagne: '#E2C08D',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulseGlow': 'pulseGlow 4s ease-in-out infinite',
+                        'marquee': 'marquee 35s linear infinite',
+                        'shimmer': 'shimmer 2.5s infinite',
+                        'waveFlow': 'waveFlow 8s ease-in-out infinite alternate',
+                        'zoomInFast': 'zoomInFast 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-12px) rotate(0.8deg)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.25', filter: 'blur(50px)' },
+                            '50%': { opacity: '0.7', filter: 'blur(75px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        },
+                        waveFlow: {
+                            '0%': { transform: 'translateY(0) scale(1)' },
+                            '100%': { transform: 'translateY(-10px) scale(1.02)' }
+                        },
+                        zoomInFast: {
+                            '0%': { opacity: '0', transform: 'scale(0.92)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome & Lucide Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS Styling & Page Transitions -->
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0B0B0B;
+            color: #F9F6F0;
+            overflow-x: hidden;
+            transition: background-color 0.6s ease, color 0.6s ease;
+        }
+
+        h1, h2, h3, h4, .font-luxury {
+            font-family: 'Playfair Display', serif;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0B0B; }
+        ::-webkit-scrollbar-thumb { background: #B76E79; border-radius: 4px; }
+
+        /* 5-Page Switch Engine */
+        .page-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .page-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Shimmer Gold Effect */
+        .gold-shimmer {
+            background: linear-gradient(90deg, #D4AF37 0%, #FFF3B0 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shimmer 4s linear infinite;
+        }
+
+        /* Glass Cards for Each Theme */
+        .card-home {
+            background: rgba(18, 18, 18, 0.85);
+            border: 1px solid rgba(183, 110, 121, 0.35);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s ease;
+        }
+        .card-home:hover {
+            border-color: #B76E79;
+            box-shadow: 0 15px 35px rgba(183, 110, 121, 0.25);
+            transform: translateY(-6px);
+        }
+
+        .card-gym {
+            background: rgba(26, 26, 26, 0.95);
+            border: 1px solid rgba(255, 42, 109, 0.3);
+            box-shadow: 0 0 15px rgba(255, 42, 109, 0.05);
+            transition: all 0.3s ease;
+        }
+        .card-gym:hover {
+            border-color: #FF2A6D;
+            box-shadow: 0 0 30px rgba(255, 42, 109, 0.4);
+            transform: scale(1.02) skewX(-1deg);
+        }
+
+        .card-yoga {
+            background: rgba(255, 255, 255, 0.92);
+            color: #221C1A;
+            border: 1px solid rgba(138, 154, 134, 0.3);
+            transition: all 0.4s ease;
+        }
+        .card-yoga:hover {
+            border-color: #D48367;
+            box-shadow: 0 15px 35px rgba(212, 131, 103, 0.2);
+            transform: translateY(-6px);
+        }
+
+        .card-gymnast {
+            background: rgba(59, 20, 36, 0.88);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, 0.1);
+            transition: all 0.4s ease;
+        }
+        .card-gymnast:hover {
+            border-color: #D4AF37;
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.35);
+            transform: translateY(-6px);
+        }
+
+        .card-inquiry {
+            background: rgba(34, 28, 26, 0.92);
+            border: 1px solid rgba(226, 192, 141, 0.3);
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+<body id="body-root" class="bg-obsidian text-ivoryCream min-h-screen flex flex-col justify-between selection:bg-roseGold selection:text-white">
+
+    <div id="ticker-bar" class="bg-gradient-to-r from-roseGold via-champagne to-roseGold text-obsidian text-xs font-extrabold py-2 overflow-hidden whitespace-nowrap relative z-50 shadow-md">
+        <div class="inline-block animate-marquee uppercase tracking-widest font-mono">
+            ✨ SK GYM WEAR &bull; 5 LUXURY PAGES &bull; 12 ELITE PIECES (GYM, YOGA & GYMNAST) &bull; WORLDWIDE VIP COURIER &bull; &nbsp;&nbsp;&nbsp;
+            ✨ SK GYM WEAR &bull; 5 LUXURY PAGES &bull; 12 ELITE PIECES (GYM, YOGA & GYMNAST) &bull; WORLDWIDE VIP COURIER &bull;
+        </div>
+    </div>
+
+    <header id="header-root" class="sticky top-0 left-0 right-0 z-40 bg-obsidian/95 backdrop-blur-xl border-b border-roseGold/20 transition-all duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <div class="flex items-center gap-3 cursor-pointer group" onclick="switchPage('home')">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-br from-roseGold to-champagneGold flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <i data-lucide="crown" class="w-5 h-5 text-obsidian"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-luxury font-black tracking-wider uppercase gold-shimmer">SK GYM WEAR</span>
+                    <span class="block text-[9px] tracking-[0.3em] text-roseGold uppercase font-semibold">Haute Athletic Couture</span>
+                </div>
+            </div>
+
+            <!-- 5 Distinct Pages Navigation (Desktop) -->
+            <nav class="hidden xl:flex items-center gap-1 bg-[#121212]/90 p-1.5 rounded-full border border-roseGold/30 backdrop-blur-md">
+                <button onclick="switchPage('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all text-champagneGold bg-roseGold/20">
+                    1. Royal Home
+                </button>
+                <button onclick="switchPage('gym')" id="nav-gym" class="nav-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all text-neutral-400 hover:text-white">
+                    2. Gym Wear
+                </button>
+                <button onclick="switchPage('yoga')" id="nav-yoga" class="nav-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all text-neutral-400 hover:text-white">
+                    3. Yoga Wear
+                </button>
+                <button onclick="switchPage('gymnast')" id="nav-gymnast" class="nav-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all text-neutral-400 hover:text-white">
+                    4. Gymnast Wear
+                </button>
+                <button onclick="switchPage('inquiry')" id="nav-inquiry" class="nav-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all text-neutral-400 hover:text-white">
+                    5. Inquiry Hub
+                </button>
+            </nav>
+
+            <!-- Actions (Cart & Mobile Toggle) -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleCartDrawer()" class="relative p-3 rounded-full bg-[#121212] border border-roseGold/40 text-champagneGold hover:bg-roseGold/20 transition-all">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-roseGold text-obsidian text-[10px] font-extrabold flex items-center justify-center">0</span>
+                </button>
+
+                <button onclick="toggleMobileMenu()" class="xl:hidden p-3 rounded-xl bg-[#121212] border border-roseGold/40 text-roseGold hover:text-white">
+                    <i data-lucide="menu" class="w-6 h-6" id="menu-icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden xl:hidden absolute top-24 left-0 right-0 bg-obsidian/98 border-b border-roseGold/30 backdrop-blur-2xl px-6 py-6 space-y-3 shadow-2xl z-50">
+            <button onclick="switchPage('home'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-champagneGold bg-roseGold/20 flex items-center gap-3">
+                <i class="fa-solid fa-crown w-5"></i> 1. Royal Home (#0B0B0B & #B76E79)
+            </button>
+            <button onclick="switchPage('gym'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-neutral-300 hover:bg-white/5 flex items-center gap-3">
+                <i class="fa-solid fa-bolt w-5"></i> 2. Gym Wear (#1A1A1A & #FF2A6D)
+            </button>
+            <button onclick="switchPage('yoga'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-neutral-300 hover:bg-white/5 flex items-center gap-3">
+                <i class="fa-solid fa-spa w-5"></i> 3. Yoga Wear (#F9F6F0 & #D48367)
+            </button>
+            <button onclick="switchPage('gymnast'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-neutral-300 hover:bg-white/5 flex items-center gap-3">
+                <i class="fa-solid fa-medal w-5"></i> 4. Gymnast Wear (#58111A & #D4AF37)
+            </button>
+            <button onclick="switchPage('inquiry'); toggleMobileMenu();" class="w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-neutral-300 hover:bg-white/5 flex items-center gap-3">
+                <i class="fa-solid fa-envelope w-5"></i> 5. Inquiry Hub (#221C1A & #E2C08D)
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative">
+
+        <!-- ================= PAGE 1: ROYAL HOME (Obsidian Black & Champagne Rose Gold) ================= -->
+        <section id="page-home" class="page-section active relative min-h-[75vh] flex items-center">
+            <div class="absolute top-1/4 left-1/4 w-[450px] h-[450px] bg-roseGold/15 rounded-full animate-pulseGlow pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10 w-full">
+                <div class="space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-roseGold/15 border border-roseGold/40 text-roseGold text-xs font-bold uppercase tracking-[0.2em]">
+                        <i class="fa-solid fa-crown"></i> Palette 1: Obsidian Black & Rose Gold
+                    </div>
+
+                    <h1 class="text-5xl sm:text-7xl font-luxury font-black tracking-tight leading-[1.1] uppercase">
+                        The Apex of <span class="gold-shimmer">Athletic</span> Luxury.
+                    </h1>
+
+                    <p class="text-neutral-300 text-lg sm:text-xl max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Unifying Gym, Yoga, and Gymnastics into a single haute couture experience. Explore 12 meticulously engineered masterpieces across 5 distinct aesthetic realms.
+                    </p>
+
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <button onclick="switchPage('gym')" class="px-8 py-4 rounded-full bg-gradient-to-r from-roseGold to-champagne text-obsidian font-extrabold text-xs uppercase tracking-[0.2em] shadow-xl shadow-roseGold/30 flex items-center gap-3 hover:scale-105 transition-transform">
+                            <span>Explore Gym Wear</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                        <button onclick="switchPage('inquiry')" class="px-8 py-4 rounded-full bg-[#121212] hover:bg-[#1a1a1a] text-ivoryCream border border-roseGold/40 font-bold text-xs uppercase tracking-[0.2em] flex items-center gap-3 transition-all">
+                            <span>VIP Inquiry Hub</span>
+                            <i class="fa-solid fa-envelope text-champagneGold"></i>
+                        </button>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-6 pt-8 border-t border-roseGold/20">
+                        <div>
+                            <h3 class="text-4xl font-luxury font-black text-champagneGold">5</h3>
+                            <p class="text-[11px] text-neutral-400 uppercase tracking-widest font-semibold mt-1">Luxury Pages</p>
+                        </div>
+                        <div>
+                            <h3 class="text-4xl font-luxury font-black text-roseGold">12</h3>
+                            <p class="text-[11px] text-neutral-400 uppercase tracking-widest font-semibold mt-1">Curated Items</p>
+                        </div>
+                        <div>
+                            <h3 class="text-4xl font-luxury font-black text-ivoryCream">3</h3>
+                            <p class="text-[11px] text-neutral-400 uppercase tracking-widest font-semibold mt-1">Disciplines</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Floating Hero Showcase Card -->
+                <div class="relative flex items-center justify-center">
+                    <div class="w-full max-w-md h-[500px] rounded-3xl card-home p-6 flex flex-col justify-between relative shadow-2xl animate-float">
+                        <div class="absolute -top-3 -right-3 px-5 py-1.5 rounded-full bg-gradient-to-r from-roseGold to-champagne text-obsidian font-extrabold text-xs uppercase tracking-widest shadow-lg">
+                            Featured Masterpiece
+                        </div>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-bold text-champagneGold uppercase tracking-widest">SK Grand Line</span>
+                            <span class="text-xs font-bold text-neutral-400">COUTURE 2026</span>
+                        </div>
+
+                        <div class="my-auto relative h-72 rounded-2xl overflow-hidden border border-roseGold/30 group">
+                            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop" 
+                                 alt="Gym Model" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                 onerror="this.src='https://placehold.co/600x400/0B0B0B/B76E79?text=SK+Luxury'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-transparent to-transparent"></div>
+                            <span class="absolute bottom-4 left-4 text-xs font-bold text-white bg-obsidian/90 px-4 py-1.5 rounded-lg border border-roseGold/40">SK Imperial Obsidian Hoodie</span>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-3 border-t border-roseGold/20">
+                            <span class="text-sm font-bold text-champagneGold">$195.00</span>
+                            <button onclick="quickAddToCart('SK Imperial Obsidian Hoodie', 195, 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop')" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-roseGold to-champagne text-obsidian font-bold text-xs uppercase tracking-wider">
+                                Add To Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: GYM WEAR (Midnight Charcoal, Electric Rose, Metallic Silver) ================= -->
+        <section id="page-gym" class="page-section py-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#FF2A6D]/15 border border-[#FF2A6D]/40 text-[#FF2A6D] text-xs font-bold uppercase tracking-[0.2em]">
+                    <i class="fa-solid fa-bolt"></i> Palette 2: Midnight Charcoal & Electric Rose
+                </div>
+                <h2 class="text-4xl sm:text-6xl font-luxury font-black tracking-tight uppercase text-ivoryCream">
+                    Gym Wear &bull; Power & Strength
+                </h2>
+                <p class="text-neutral-300 text-base sm:text-lg font-light">High-energy workout motivation featuring neon electric rose glowing accents and fast slide-in compression styling.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gym-grid">
+                <!-- Injected via JavaScript items 1, 2, 3, 4 -->
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: YOGA WEAR (Soft Ivory Cream, Warm Terracotta, Muted Sage Green) ================= -->
+        <section id="page-yoga" class="page-section py-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#D48367]/15 border border-[#D48367]/40 text-[#D48367] text-xs font-bold uppercase tracking-[0.2em]">
+                    <i class="fa-solid fa-spa"></i> Palette 3: Ivory Cream & Terracotta
+                </div>
+                <h2 class="text-4xl sm:text-6xl font-luxury font-black tracking-tight uppercase text-[#221C1A]">
+                    Yoga Wear &bull; Peace & Flexibility
+                </h2>
+                <p class="text-neutral-700 text-base sm:text-lg font-light">Calm, organic, breathable aesthetic with soft wavy backgrounds and gentle hover cards for total relaxation.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="yoga-grid">
+                <!-- Injected via JavaScript items 5, 6, 7, 8 -->
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: GYMNAST WEAR (Royal Burgundy, Velvet Plum, Shimmering Gold) ================= -->
+        <section id="page-gymnast" class="page-section py-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#D4AF37]/15 border border-[#D4AF37]/40 text-[#D4AF37] text-xs font-bold uppercase tracking-[0.2em]">
+                    <i class="fa-solid fa-medal"></i> Palette 4: Royal Burgundy & Shimmering Gold
+                </div>
+                <h2 class="text-4xl sm:text-6xl font-luxury font-black tracking-tight uppercase text-ivoryCream">
+                    Gymnast Wear &bull; Grace & Agility
+                </h2>
+                <p class="text-neutral-300 text-base sm:text-lg font-light">Flexible, artistic, graceful royal aesthetic with sparkling shimmer borders and staggered popup grids.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gymnast-grid">
+                <!-- Injected via JavaScript items 9, 10, 11, 12 -->
+            </div>
+        </section>
+
+        <!-- ================= PAGE 5: INQUIRY & CUSTOM ORDERS (Deep Espresso Brown, Warm Champagne, Pure White) ================= -->
+        <section id="page-inquiry" class="page-section py-8">
+            <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#E2C08D]/15 border border-[#E2C08D]/40 text-[#E2C08D] text-xs font-bold uppercase tracking-[0.2em]">
+                    <i class="fa-solid fa-envelope"></i> Palette 5: Espresso Brown & Warm Champagne
+                </div>
+                <h2 class="text-4xl sm:text-6xl font-luxury font-black tracking-tight uppercase text-ivoryCream">
+                    Boutique Inquiry & Custom Orders
+                </h2>
+                <p class="text-neutral-300 text-base sm:text-lg font-light">Welcoming, trustworthy boutique-style high-end service with floating form inputs and instant confirmation.</p>
+            </div>
+
+            <!-- Inquiry & Order Hub Form -->
+            <div class="max-w-4xl mx-auto card-inquiry p-8 sm:p-14 rounded-3xl relative overflow-hidden shadow-2xl border-[#E2C08D]/50">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
+                    <div class="space-y-6">
+                        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#E2C08D]/20 border border-[#E2C08D]/40 text-[#E2C08D] text-xs font-bold uppercase tracking-[0.2em]">
+                            <i class="fa-solid fa-shield-halved"></i> Private Concierge
+                        </div>
+                        <h3 class="text-3xl sm:text-4xl font-luxury font-black uppercase tracking-tight text-white">
+                            Secure Your Custom Allocation.
+                        </h3>
+                        <p class="text-neutral-300 text-sm leading-relaxed font-medium">
+                            Submit your private client order or custom inquiry for bespoke gym, yoga, or gymnast apparel.
+                        </p>
+                        <div class="space-y-3 pt-2">
+                            <div class="flex items-center gap-3 text-neutral-200 text-sm font-bold">
+                                <i class="fa-solid fa-envelope text-[#E2C08D]"></i> concierge@skgymwear.com
+                            </div>
+                            <div class="flex items-center gap-3 text-neutral-200 text-sm font-bold">
+                                <i class="fa-solid fa-phone text-[#E2C08D]"></i> +1 (800) 932-SKGYM VIP
+                            </div>
+                        </div>
+                    </div>
+
+                    <form onsubmit="handleInquirySubmit(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-neutral-300 mb-1">Client Full Name</label>
+                            <input type="text" id="inquiry-name" required placeholder="Lord / Lady Alexander" class="w-full px-4 py-3 rounded-xl bg-obsidian border border-[#E2C08D]/40 text-white focus:outline-none focus:border-[#E2C08D] text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-neutral-300 mb-1">VIP Email Address</label>
+                            <input type="email" id="inquiry-email" required placeholder="alexander@luxury.com" class="w-full px-4 py-3 rounded-xl bg-obsidian border border-[#E2C08D]/40 text-white focus:outline-none focus:border-[#E2C08D] text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-neutral-300 mb-1">Discipline / Subject</label>
+                            <select id="inquiry-subject" class="w-full px-4 py-3 rounded-xl bg-obsidian border border-[#E2C08D]/40 text-white focus:outline-none focus:border-[#E2C08D] text-sm font-bold">
+                                <option>Gym Wear Collection Inquiry</option>
+                                <option>Yoga Wear Custom Order</option>
+                                <option>Gymnast Wear Team Allocation</option>
+                                <option>General VIP Concierge Request</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-neutral-300 mb-1">Specifications (Size S, M, L, XL)</label>
+                            <textarea id="inquiry-msg" rows="2" required placeholder="Specify size and custom gold monogram requests..." class="w-full px-4 py-3 rounded-xl bg-obsidian border border-[#E2C08D]/40 text-white focus:outline-none focus:border-[#E2C08D] text-sm resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-[#E2C08D] to-[#D4AF37] text-obsidian font-extrabold text-xs uppercase tracking-[0.2em] shadow-lg">
+                            Transmit VIP Order / Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Shopping Cart Slide-Over Drawer -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex justify-end">
+        <div class="w-full max-w-md bg-[#0c0c0c] border-l border-roseGold/40 h-full p-6 flex flex-col justify-between shadow-2xl overflow-y-auto">
+            <div class="space-y-6">
+                <div class="flex items-center justify-between pb-4 border-b border-roseGold/20">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="shopping-bag" class="text-champagneGold"></i>
+                        <h3 class="text-xl font-luxury font-bold text-white uppercase">Your VIP Cart</h3>
+                    </div>
+                    <button onclick="toggleCartDrawer()" class="text-neutral-400 hover:text-white p-2">
+                        <i class="fa-solid fa-xmark text-lg"></i>
+                    </button>
+                </div>
+
+                <div id="cart-items-container" class="space-y-4">
+                    <!-- Cart items rendered dynamically -->
+                </div>
+            </div>
+
+            <div class="pt-6 border-t border-roseGold/20 space-y-4">
+                <div class="flex items-center justify-between text-lg font-bold">
+                    <span class="text-neutral-300">Total Allocation:</span>
+                    <span id="cart-total" class="text-champagneGold font-luxury">$0.00</span>
+                </div>
+                <button onclick="checkoutCart()" class="w-full py-4 rounded-xl bg-gradient-to-r from-roseGold to-champagne text-obsidian font-extrabold text-xs uppercase tracking-[0.2em] shadow-lg">
+                    Proceed to Secure Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quickview-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="card-home p-6 sm:p-8 rounded-3xl max-w-lg w-full relative border-roseGold/50 shadow-2xl">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 text-neutral-400 hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="space-y-4">
+                <img id="qv-img" src="" alt="Product" class="w-full h-60 object-cover rounded-2xl border border-roseGold/30">
+                <div class="flex items-center justify-between">
+                    <h3 id="qv-title" class="text-2xl font-luxury font-black text-white uppercase"></h3>
+                    <span id="qv-price" class="text-xl font-black text-champagneGold"></span>
+                </div>
+                <p id="qv-desc" class="text-neutral-300 text-xs leading-relaxed"></p>
+                <div class="flex gap-3 pt-2">
+                    <select id="qv-size" class="w-1/3 bg-neutral-900 border border-roseGold/40 rounded-xl px-3 py-3 text-xs text-white font-bold">
+                        <option>Size: S</option>
+                        <option selected>Size: M</option>
+                        <option>Size: L</option>
+                        <option>Size: XL</option>
+                    </select>
+                    <button onclick="addModalToCart()" class="w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-roseGold to-champagne text-obsidian font-bold uppercase text-xs tracking-wider">
+                        Add To Bag
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Notification Modal -->
+    <div id="success-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="bg-ivoryCream text-[#221C1A] p-8 rounded-3xl max-w-md w-full text-center space-y-6 shadow-2xl border border-[#D4AF37]">
+            <div class="w-16 h-16 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37] flex items-center justify-center text-[#221C1A] mx-auto animate-bounce">
+                <i class="fa-solid fa-crown text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-luxury font-black uppercase tracking-wider">Allocation Transmitted</h3>
+            <p id="success-message" class="text-neutral-700 text-sm font-medium">Your request has been successfully registered with our Atelier concierge.</p>
+            <button onclick="closeSuccessModal()" class="w-full py-3.5 rounded-xl bg-[#221C1A] text-ivoryCream font-extrabold uppercase text-xs tracking-widest">
+                Acknowledge
+            </button>
+        </div>
+    </div>
+
+    <!-- Luxury Footer -->
+    <footer id="footer-root" class="border-t border-roseGold/20 bg-obsidian py-10 text-center text-xs text-neutral-500 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>&copy; 2026 SK GYM WEAR Haute Couture. All 12 master pieces allocated globally.</p>
+            <div class="flex items-center gap-6 text-neutral-400">
+                <a href="#" class="hover:text-champagneGold">Privacy Policy</a>
+                <a href="#" class="hover:text-champagneGold">Concierge Terms</a>
+                <a href="#" class="hover:text-champagneGold"><i class="fa-brands fa-instagram text-base"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // 12 Curated Luxury Items across Gym, Yoga, and Gymnast wear
+        const collectionItems = [
+            // Page 2: Gym Wear (Items 1, 2, 3, 4)
+            { id: 1, page: 'gym', name: 'SK Charcoal Power Hoodie', price: 175, img: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=800&auto=format&fit=crop', desc: 'Midnight charcoal weave with electric rose neon piping and thermal retention.' },
+            { id: 2, page: 'gym', name: 'SK Electric Compression Tights', price: 130, img: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=800&auto=format&fit=crop', desc: 'High-compression silver infused fabric with electric pink lateral support bands.' },
+            { id: 3, page: 'gym', name: 'SK Metallic Lift Tank', price: 90, img: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=800&auto=format&fit=crop', desc: 'Metallic silver sheen lightweight tank engineered for intense resistance workouts.' },
+            { id: 4, page: 'gym', name: 'SK Obsidian Heavyweight Duffel', price: 290, img: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?q=80&w=800&auto=format&fit=crop', desc: 'Midnight charcoal leather with electric rose zippers and reinforced gym compartment.' },
+
+            // Page 3: Yoga Wear (Items 5, 6, 7, 8)
+            { id: 5, page: 'yoga', name: 'SK Ivory Cream Ribbed Bodysuit', price: 145, img: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=800&auto=format&fit=crop', desc: 'Organic soft ivory cream cotton blend offering unrestricted flow and flexibility.' },
+            { id: 6, page: 'yoga', name: 'SK Terracotta Flow Leggings', price: 120, img: 'https://images.unsplash.com/photo-1518310383802-640c2de311b2?q=80&w=800&auto=format&fit=crop', desc: 'Warm terracotta hue with high-waist supportive band for deep meditation and yoga.' },
+            { id: 7, page: 'yoga', name: 'SK Sage Green Wrap Top', price: 95, img: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=800&auto=format&fit=crop', desc: 'Muted sage green breathable bamboo fabric designed for restorative breathing.' },
+            { id: 8, page: 'yoga', name: 'SK Ivory Meditation Mat Bag', price: 110, img: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format&fit=crop', desc: 'Organic cotton canvas bag with terracotta strap and brass hardware.' },
+
+            // Page 4: Gymnast Wear (Items 9, 10, 11, 12)
+            { id: 9, page: 'gymnast', name: 'SK Royal Burgundy Leotard', price: 210, img: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=800&auto=format&fit=crop', desc: 'Royal burgundy velvet with shimmering gold foil stenciled motifs for elite routines.' },
+            { id: 10, page: 'gymnast', name: 'SK Velvet Plum Acrobatics Set', price: 230, img: 'https://images.unsplash.com/photo-1538805060514-97d9cc17730c?q=80&w=800&auto=format&fit=crop', desc: 'Deep velvet plum stretch fit with intricate gold thread embroidery.' },
+            { id: 11, page: 'gymnast', name: 'SK Shimmer Gold Warm-up Jacket', price: 260, img: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=800&auto=format&fit=crop', desc: 'Metallic gold shimmer finish jacket designed for competition floor warm-ups.' },
+            { id: 12, page: 'gymnast', name: 'SK Royal Grace Kit Bag', price: 195, img: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=800&auto=format&fit=crop', desc: 'Burgundy satin duffel with gold hardware and specialized shoe compartments.' }
+        ];
+
+        let cart = [];
+
+        // Render Collection Grids with Theme Cards
+        function renderCollectionGrids() {
+            // Gym Wear Grid
+            const gymContainer = document.getElementById('gym-grid');
+            if (gymContainer) {
+                gymContainer.innerHTML = collectionItems.filter(i => i.page === 'gym').map(item => `
+                    <div class="card-gym rounded-3xl p-6 flex flex-col justify-between space-y-6 group shadow-xl">
+                        <div class="relative h-72 rounded-2xl overflow-hidden bg-neutral-900 border border-[#FF2A6D]/30">
+                            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/600x400/1A1A1A/FF2A6D?text=SK+Gym'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#FF2A6D] text-white text-[10px] font-extrabold uppercase shadow">Gym Wear #${item.id}</span>
+                            <span class="absolute bottom-3 left-3 text-xs font-bold text-white bg-black/80 px-3 py-1 rounded-lg backdrop-blur-md">${item.name}</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-luxury font-black text-white">${item.name}</h3>
+                                <span class="text-lg font-black text-[#FF2A6D]">$${item.price}</span>
+                            </div>
+                            <p class="text-neutral-400 text-xs leading-relaxed">${item.desc}</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openQuickView(${item.id})" class="py-3 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-200 font-bold text-xs uppercase tracking-wider border border-[#FF2A6D]/30 flex items-center justify-center gap-2">
+                                <i data-lucide="eye" class="w-4 h-4 text-[#FF2A6D]"></i> Quick View
+                            </button>
+                            <button onclick="addToCart(${item.id})" class="py-3 rounded-xl bg-[#FF2A6D] hover:bg-[#ff115e] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#FF2A6D]/30">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Yoga Wear Grid
+            const yogaContainer = document.getElementById('yoga-grid');
+            if (yogaContainer) {
+                yogaContainer.innerHTML = collectionItems.filter(i => i.page === 'yoga').map(item => `
+                    <div class="card-yoga rounded-3xl p-6 flex flex-col justify-between space-y-6 group shadow-xl">
+                        <div class="relative h-72 rounded-2xl overflow-hidden bg-neutral-200 border border-[#D48367]/30">
+                            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/600x400/F9F6F0/D48367?text=SK+Yoga'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#D48367] text-white text-[10px] font-extrabold uppercase shadow">Yoga Wear #${item.id}</span>
+                            <span class="absolute bottom-3 left-3 text-xs font-bold text-white bg-black/70 px-3 py-1 rounded-lg backdrop-blur-md">${item.name}</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-luxury font-black text-[#221C1A]">${item.name}</h3>
+                                <span class="text-lg font-black text-[#D48367]">$${item.price}</span>
+                            </div>
+                            <p class="text-neutral-600 text-xs leading-relaxed">${item.desc}</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openQuickView(${item.id})" class="py-3 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-bold text-xs uppercase tracking-wider border border-[#D48367]/30 flex items-center justify-center gap-2">
+                                <i data-lucide="eye" class="w-4 h-4 text-[#D48367]"></i> Quick View
+                            </button>
+                            <button onclick="addToCart(${item.id})" class="py-3 rounded-xl bg-[#D48367] hover:bg-[#c47155] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Gymnast Wear Grid
+            const gymnastContainer = document.getElementById('gymnast-grid');
+            if (gymnastContainer) {
+                gymnastContainer.innerHTML = collectionItems.filter(i => i.page === 'gymnast').map(item => `
+                    <div class="card-gymnast rounded-3xl p-6 flex flex-col justify-between space-y-6 group shadow-xl">
+                        <div class="relative h-72 rounded-2xl overflow-hidden bg-neutral-900 border border-[#D4AF37]/30">
+                            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='https://placehold.co/600x400/3B1424/D4AF37?text=SK+Gymnast'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#D4AF37] text-black text-[10px] font-extrabold uppercase shadow">Gymnast Wear #${item.id}</span>
+                            <span class="absolute bottom-3 left-3 text-xs font-bold text-white bg-black/80 px-3 py-1 rounded-lg backdrop-blur-md">${item.name}</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-xl font-luxury font-black text-white">${item.name}</h3>
+                                <span class="text-lg font-black text-[#D4AF37]">$${item.price}</span>
+                            </div>
+                            <p class="text-neutral-300 text-xs leading-relaxed">${item.desc}</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="openQuickView(${item.id})" class="py-3 rounded-xl bg-neutral-900 hover:bg-neutral-800 text-neutral-200 font-bold text-xs uppercase tracking-wider border border-[#D4AF37]/30 flex items-center justify-center gap-2">
+                                <i data-lucide="eye" class="w-4 h-4 text-[#D4AF37]"></i> Quick View
+                            </button>
+                            <button onclick="addToCart(${item.id})" class="py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#ffe066] text-obsidian font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-[#D4AF37]/30">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            lucide.createIcons();
+        }
+
+        // Page Switching Engine with Dynamic Color Adjustments per Page
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+            setTimeout(() => {
+                const target = document.getElementById(`page-${pageId}`);
+                if (target) target.classList.add('active');
+            }, 50);
+
+            // Update active state in navigation
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all text-neutral-400 hover:text-white";
+            });
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) {
+                activeNav.className = "nav-btn px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all text-champagneGold bg-roseGold/20";
+            }
+
+            // Adapt page background/theme depending on user's active page
+            const bodyRoot = document.getElementById('body-root');
+            const tickerBar = document.getElementById('ticker-bar');
+            const headerRoot = document.getElementById('header-root');
+            const footerRoot = document.getElementById('footer-root');
+
+            if (pageId === 'yoga') {
+                bodyRoot.style.backgroundColor = '#F9F6F0';
+                bodyRoot.style.color = '#221C1A';
+                tickerBar.className = "bg-gradient-to-r from-[#D48367] via-[#8A9A86] to-[#D48367] text-white text-xs font-extrabold py-2 overflow-hidden whitespace-nowrap relative z-50 shadow-md";
+                headerRoot.style.backgroundColor = 'rgba(249, 246, 240, 0.95)';
+                footerRoot.style.backgroundColor = '#F9F6F0';
+            } else if (pageId === 'gym') {
+                bodyRoot.style.backgroundColor = '#1A1A1A';
+                bodyRoot.style.color = '#F9F6F0';
+                tickerBar.className = "bg-gradient-to-r from-[#FF2A6D] via-[#C0C0C0] to-[#FF2A6D] text-black text-xs font-extrabold py-2 overflow-hidden whitespace-nowrap relative z-50 shadow-md";
+                headerRoot.style.backgroundColor = 'rgba(26, 26, 26, 0.95)';
+                footerRoot.style.backgroundColor = '#1A1A1A';
+            } else if (pageId === 'gymnast') {
+                bodyRoot.style.backgroundColor = '#3B1424';
+                bodyRoot.style.color = '#F9F6F0';
+                tickerBar.className = "bg-gradient-to-r from-[#58111A] via-[#D4AF37] to-[#58111A] text-white text-xs font-extrabold py-2 overflow-hidden whitespace-nowrap relative z-50 shadow-md";
+                headerRoot.style.backgroundColor = 'rgba(59, 20, 36, 0.95)';
+                footerRoot.style.backgroundColor = '#3B1424';
+            } else if (pageId === 'inquiry') {
+                bodyRoot.style.backgroundColor = '#221C1A';
+                bodyRoot.style.color = '#F9F6F0';
+                tickerBar.className = "bg-gradient-to-r from-[#E2C08D] via-[#FFFFFF] to-[#E2C08D] text-obsidian text-xs font-extrabold py-2 overflow-hidden whitespace-nowrap relative z-50 shadow-md";
+                headerRoot.style.backgroundColor = 'rgba(34, 28, 26, 0.95)';
+                footerRoot.style.backgroundColor = '#221C1A';
+            } else {
+                // Home
+                bodyRoot.style.backgroundColor = '#0B0B0B';
+                bodyRoot.style.color = '#F9F6F0';
+                tickerBar.className = "bg-gradient-to-r from-roseGold via-champagne to-roseGold text-obsidian text-xs font-extrabold py-2 overflow-hidden whitespace-nowrap relative z-50 shadow-md";
+                headerRoot.style.backgroundColor = 'rgba(11, 11, 11, 0.95)';
+                footerRoot.style.backgroundColor = '#0B0B0B';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                menu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        }
+
+        // Cart Drawer Logic
+        function toggleCartDrawer() {
+            const drawer = document.getElementById('cart-drawer');
+            drawer.classList.toggle('hidden');
+            renderCartItems();
+        }
+
+        function addToCart(itemId, size = 'M') {
+            const item = collectionItems.find(i => i.id === itemId);
+            if (!item) return;
+            const existing = cart.find(c => c.id === itemId && c.size === size);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...item, size, qty: 1 });
+            }
+            updateCartBadge();
+            renderCartItems();
+            toggleCartDrawer();
+        }
+
+        function quickAddToCart(name, price, img) {
+            cart.push({ id: 99, name, price, img, size: 'M', qty: 1 });
+            updateCartBadge();
+            renderCartItems();
+            toggleCartDrawer();
+        }
+
+        function updateCartBadge() {
+            const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+            document.getElementById('cart-badge').innerText = totalQty;
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const totalContainer = document.getElementById('cart-total');
+            if (cart.length === 0) {
+                container.innerHTML = `<p class="text-neutral-400 text-xs text-center py-10">Your VIP shopping cart is currently empty.</p>`;
+                totalContainer.innerText = '$0.00';
+                return;
+            }
+
+            let totalPrice = 0;
+            container.innerHTML = cart.map((item, idx) => {
+                totalPrice += item.price * item.qty;
+                return `
+                    <div class="flex items-center gap-4 bg-neutral-900/80 p-3 rounded-2xl border border-roseGold/30">
+                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-xl" onerror="this.src='https://placehold.co/100x100/0B0B0B/D4AF37?text=SK'">
+                        <div class="flex-grow">
+                            <h4 class="text-xs font-bold text-white">${item.name}</h4>
+                            <p class="text-[10px] text-neutral-400">Size: ${item.size} &bull; $${item.price} x ${item.qty}</p>
+                        </div>
+                        <button onclick="removeFromCart(${idx})" class="text-neutral-400 hover:text-red-400 p-2"><i class="fa-solid fa-trash text-xs"></i></button>
+                    </div>
+                `;
+            }).join('');
+            totalContainer.innerText = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function removeFromCart(idx) {
+            cart.splice(idx, 1);
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function checkoutCart() {
+            if (cart.length === 0) return;
+            toggleCartDrawer();
+            document.getElementById('success-message').innerText = `Your secure checkout allocation for ${cart.reduce((s, i) => s + i.qty, 0)} items has been processed successfully. Worldwide VIP courier initialized.`;
+            document.getElementById('success-modal').classList.remove('hidden');
+            cart = [];
+            updateCartBadge();
+        }
+
+        // Quick View Modal
+        let currentModalItem = null;
+        function openQuickView(itemId) {
+            const item = collectionItems.find(i => i.id === itemId);
+            if (!item) return;
+            currentModalItem = item;
+            document.getElementById('qv-title').innerText = item.name;
+            document.getElementById('qv-price').innerText = `$${item.price}`;
+            document.getElementById('qv-img').src = item.img;
+            document.getElementById('qv-desc').innerText = item.desc;
+            document.getElementById('quickview-modal').classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickview-modal').classList.add('hidden');
+        }
+
+        function addModalToCart() {
+            if (!currentModalItem) return;
+            const size = document.getElementById('qv-size').value.replace('Size: ', '');
+            addToCart(currentModalItem.id, size);
+            closeQuickView();
+        }
+
+        // Inquiry Form Handler
+        function handleInquirySubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('inquiry-name').value;
+            const subject = document.getElementById('inquiry-subject').value;
+            document.getElementById('success-message').innerText = `Esteemed ${name}, your inquiry regarding "${subject}" has been transmitted to our New York & Milan Atelier concierge.`;
+            document.getElementById('success-modal').classList.remove('hidden');
+            event.target.reset();
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+        }
+
+        // Initialize Grids on Window Load
+        window.onload = function() {
+            renderCollectionGrids();
+        };
+    </script>
+</body>
+</html>
